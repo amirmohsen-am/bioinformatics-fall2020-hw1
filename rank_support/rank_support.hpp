@@ -96,7 +96,14 @@ class rank_support
 	}
 	uint64_t rank0(uint64_t i)
 	{
-		return i - rank1(i);
+		return i+1 - rank1(i);
+	}
+	uint64_t rank(uint64_t i, bool bit)
+	{
+		if (bit == 0)
+			return rank0(i);
+		else
+			return rank1(i);
 	}
 
 	uint64_t overhead()
@@ -133,6 +140,7 @@ class rank_support
 
 	bool test()
 	{
+		cerr << "testing rank_support on bitvector size: " << b->size() << endl;
 		int cnt = 0;
 		for (auto i = 0; i < b->size(); i++)
 		{
