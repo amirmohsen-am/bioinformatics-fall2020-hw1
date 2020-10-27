@@ -3,7 +3,6 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-using namespace boost;
 
 
 // get ceil(log2(x))
@@ -79,6 +78,8 @@ class rank_support
 	{
 		uint64_t s = (i/sz2)*sz2;
 		uint64_t ind = 0;
+
+		/*
 		uint64_t mask = 1;
 		for (uint64_t i = s; i < s+sz2; i++)
 		{
@@ -86,13 +87,16 @@ class rank_support
 				ind += mask;
 			mask <<= 1;
 		}
+		*/
+
+		ind = b->get_int(s,sz2);
 			
 		/*
-		cerr << "R1: " << R1[i/sz1].to_ulong() << endl;
-		cerr << "R2: " << R2[i/sz2].to_ulong() << endl;
-		cerr << "R3 " << ind << ": "<< R3[ind][i%sz2].to_ulong() << endl;
+		cerr << "R1: " << R1[i/sz1].to_int() << endl;
+		cerr << "R2: " << R2[i/sz2].to_int() << endl;
+		cerr << "R3 " << ind << ": "<< R3[ind][i%sz2].to_int() << endl;
 		*/
-		return R1[i/sz1].to_ulong() + R2[i/sz2].to_ulong() + R3[ind][i%sz2].to_ulong();
+		return R1[i/sz1].to_int() + R2[i/sz2].to_int() + R3[ind][i%sz2].to_int();
 	}
 	uint64_t rank0(uint64_t i)
 	{
@@ -121,11 +125,11 @@ class rank_support
 		cerr << "bit_vector:\n" << (*b) << endl;
 		cerr << "R1, sz1= " << sz1 << endl;
 		for (auto x : R1)
-			cerr << x.to_ulong() << " ";
+			cerr << x.to_int() << " ";
 		cerr << endl;
 		cerr << "R2, sz2= " << sz2 << endl;
 		for (auto x : R2)
-			cerr << x.to_ulong() << " "; 
+			cerr << x.to_int() << " "; 
 		cerr << endl;
 
 	}

@@ -7,16 +7,13 @@ int main()
 {
 	// example in slide
 	/*
-	string bit_string = "1001011101001010";
-	reverse(bit_string.begin(), bit_string.end());
-	bit_vector b(bit_string);
+	bit_vector b = {1,0,0,1,0,1,1,1,0,1,0,0,1,0,1,0};
 	rank_support r(&b);
 	select_support s(&r);
 	s.test();
 	*/
 	
 	
-	/*
 	int len; cin >> len;
 	bit_vector b = rand_bitvector(len);
 	rank_support r(&b);
@@ -25,7 +22,6 @@ int main()
 	
 	cerr << "overhead: " << r.overhead() << endl;
 	r.print_sizes();
-	*/
 	
 	
 

@@ -7,9 +7,7 @@ int main()
 {
 	// example in slide
 	/*
-	string bit_string = "1001011101001010";
-	reverse(bit_string.begin(), bit_string.end());
-	bit_vector b(bit_string);
+	bit_vector b = {1,0,0,1,0,1,1,1,0,1,0,0,1,0,1,0};
 	rank_support r(&b);
 	r.print();
 	*/

@@ -1,18 +1,29 @@
 #include <iostream>
-#include "boost/dynamic_bitset.hpp"
 #include <bits/stdc++.h>
+#include <sdsl/bit_vectors.hpp>
+
 
 using namespace std;
-using namespace boost;
 
 
-class bit_vector : public dynamic_bitset<>
+class bit_vector : public sdsl::bit_vector
 {
 	// include the constructors
-	using dynamic_bitset::dynamic_bitset;
-
+	using sdsl::bit_vector::bit_vector;
 	public:
 
+	bit_vector(uint64_t size, uint64_t value) : sdsl::bit_vector(size)
+	{
+		set_int(0, value);
+	}
+
+	uint64_t to_int()
+	{
+		// TODO check if it fits
+		return get_int(0);
+	}
+
+	/*
 	void save(ofstream& fout)
 	{
 	
@@ -54,6 +65,7 @@ class bit_vector : public dynamic_bitset<>
 			}
 		}
 	}
+	*/
 
 
 };
