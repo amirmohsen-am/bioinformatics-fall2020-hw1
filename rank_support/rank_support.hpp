@@ -1,5 +1,5 @@
 #include <iostream>
-#include "bit_vector.hpp"
+#include "../bit_vector.hpp"
 #include <bits/stdc++.h>
 
 using namespace std;
