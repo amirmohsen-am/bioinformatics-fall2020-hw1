@@ -5,3 +5,12 @@ c++ standard libraries are not enough for our case:
 - `bitset<SIZE>` needs to have a compile-fixed time size
 
 `boost/dynamic_bitset` is a good substitute. But boost is a big libraries and we only need to use 
+
+installing boost:
+```
+sudo apt-get install libboost-all-dev
+```
+getting header files for `dynamic_bitset`
+```
+bcp dynamic_bitset.hpp lib/ --boost=/usr/include/
+```
