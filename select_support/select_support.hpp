@@ -61,7 +61,18 @@ class select_support
 		cerr << "test passed" << endl;
 		return true;
 	}
+
+	void save(ofstream& fout)
+	{
+		r->save(fout);
+	}
 	
+	void load(ifstream& fin)
+	{
+		if (!r)
+			r = new rank_support();
+		r->load(fin);
+	}
 
 };
 

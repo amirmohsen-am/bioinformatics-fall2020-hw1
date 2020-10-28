@@ -19,10 +19,9 @@ class fm_index
 
 	void init(string input)
 	{
-		this->input = input;
 		sdsl::csa_wt<> csa;
 		sdsl::construct_im(csa, input, 1);
-		sigma = csa.sigma;
+		sigma = csa.sigma-1;
 		size = input.size();
 		bwt = "";
 		for (auto c: csa.bwt)
@@ -92,7 +91,7 @@ class fm_index
 	{
 		cerr << sigma << endl;
 		cerr << size << endl;
-		cerr << input << endl;
+//		cerr << input << endl;
 		cerr << bwt << endl;
 		for (auto i: map)
 		{
@@ -104,5 +103,61 @@ class fm_index
 			char c = i.first;
 			cerr << c << ": " << first[map[c]] << endl;
 		}
+	}
+
+
+
+	/*
+	uint64_t sigma;
+	uint64_t size;
+	rank_support* rank;
+	uint64_t* first;
+	unordered_map <char, uint64_t> map;
+	string bwt;
+
+	*/
+	void save(ofstream& fout)
+	{
+		save_ull(sigma, fout);
+		save_ull(size, fout);
+
+		for (int i = 0; i < sigma; i++)
+			rank[i].save(fout);
+		for (int i = 0; i < sigma; i++)
+			save_ull(first[i], fout);
+		save_ull(map.size(), fout);
+		for (auto i: map)
+		{
+			save_ull(i.first, fout);
+			save_ull(i.second, fout);
+		}
+		fout << bwt;
+	}
+	void load(ifstream& fin)
+	{
+		map.clear();
+
+		load_ull(sigma, fin);
+		load_ull(size, fin);
+
+		rank = new rank_support [sigma];
+		first = new uint64_t [sigma];
+//		cerr << sigma << " " << size << endl;
+
+		for (int i = 0; i < sigma; i++)
+			rank[i].load(fin);
+		for (int i = 0; i < sigma; i++)
+			load_ull(first[i], fin);
+		uint64_t map_sz;
+		load_ull(map_sz, fin);
+		for (int i = 0; i < map_sz; i++)
+		{
+			uint64_t c, mp;
+			load_ull(c, fin);
+			load_ull(mp, fin);
+			map[c] = mp;
+		}
+		fin >> bwt;
+		assert(bwt.size() == size+1);
 	}
 };

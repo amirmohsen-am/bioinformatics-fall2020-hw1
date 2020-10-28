@@ -27,6 +27,7 @@ class rank_support
 
 	rank_support()
 	{
+		b = new bit_vector(0);
 	}
 	rank_support(bit_vector *b)
 	{
@@ -169,6 +170,69 @@ class rank_support
 		cerr << "test passed" << endl;
 		return true;
 	}
+/*
+
+	uint64_t sz1, sz2;
+	bit_vector* b;
+	vector <bit_vector> R1, R2;
+	bit_vector **R3; 
+	uint64_t R1_bits, R2_bits;
+	uint64_t R3_bits;
+
+	*/
+	void save(ofstream& fout)
+	{
+		save_ull(sz1, fout);
+		save_ull(sz2, fout);
+		b->save(fout);
+		save_ull(R1.size(), fout);
+		for (auto bv: R1)
+			bv.save(fout);
+
+		save_ull(R2.size(), fout);
+		for (auto bv: R2)
+			bv.save(fout);
+
+		for (int i = 0; i < (1<<sz2); i++)
+			for (int j = 0; j < sz2; j++)
+				R3[i][j].save(fout);
+	}
+	void load(ifstream& fin)
+	{
+		R1.clear(); R2.clear();
+
+		load_ull(sz1, fin);
+		load_ull(sz2, fin);
+		b->load(fin);
+		uint64_t R1sz;
+		load_ull(R1sz, fin);
+		R1.resize(R1sz);
+		for (int i = 0; i < R1sz; i++)
+			R1[i].load(fin);
+
+
+		uint64_t R2sz;
+		load_ull(R2sz, fin);
+		R2.resize(R2sz);
+		for (int i = 0; i < R2sz; i++)
+			R2[i].load(fin);
+
+		R3 = new bit_vector*[1<<sz2];
+		for (uint64_t i = 0; i < (1<<sz2); i++)
+		{
+			R3[i] = new bit_vector[sz2];
+			for (int j = 0; j < sz2; j++)
+				R3[i][j].load(fin);
+		}
+
+//		cerr << R1.size() << " " <<  R2.size()  << " " <<  sz1 << " " << sz2 << endl;
+		assert(R1.size() * R2.size() * sz1 * sz2 > 0);
+
+		R1_bits = R1[0].size();
+		R2_bits = R2[0].size();
+		R3_bits = R3[0][0].size();
+	}
+
 	
 
 };
