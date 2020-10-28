@@ -1,6 +1,5 @@
 #include <iostream>
 #include "../bit_vector.hpp"
-#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -26,7 +25,15 @@ class rank_support
 
 	bit_vector **R3; 
 
-	rank_support(bit_vector *b) 
+	rank_support()
+	{
+	}
+	rank_support(bit_vector *b)
+	{
+		init(b);
+	}
+
+	void init(bit_vector *b) 
 	{
 		assert(b->size() >= 4);
 		this->b = b;
@@ -76,6 +83,9 @@ class rank_support
 
 	uint64_t rank1(uint64_t i)
 	{
+		if (i >= b->size()) i = b->size()-1;
+
+
 		uint64_t s = (i/sz2)*sz2;
 		uint64_t ind = 0;
 
@@ -145,7 +155,7 @@ class rank_support
 	bool test()
 	{
 		cerr << "testing rank_support on bitvector size: " << b->size() << endl;
-		int cnt = 0;
+		uint64_t cnt = 0;
 		for (auto i = 0; i < b->size(); i++)
 		{
 			cnt += (*b)[i];

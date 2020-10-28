@@ -1,5 +1,4 @@
 #include <iostream>
-#include <bits/stdc++.h>
 #include <sdsl/bit_vectors.hpp>
 
 

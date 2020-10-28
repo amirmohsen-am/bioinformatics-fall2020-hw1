@@ -15,9 +15,9 @@ class select_support
 
 	uint64_t select(uint64_t i, bool bit)
 	{
-		if (i == 0) return -1;
-		uint64_t s = -1, e = r->b->size();
-		uint64_t mid;
+		if (i == 0) return r->b->size();
+		int s = -1, e = r->b->size();
+		int mid;
 		while (e - s > 1)
 		{
 			mid = (e+s)/2;
@@ -26,7 +26,7 @@ class select_support
 			else
 				e = mid;
 		}
-		return e == r->b->size() ? -1 : e;
+		return e;
 	}
 	uint64_t select1(uint64_t i)
 	{
