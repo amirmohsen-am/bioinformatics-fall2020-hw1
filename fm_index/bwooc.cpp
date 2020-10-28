@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 		cout << fm.sigma << endl;
 		cout << fm.size << endl;
 
-		fm.print();
+//		fm.print();
 	}
 	else if (type == "build2")
 	{
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 		cout << fm.sigma << endl;
 		cout << fm.size << endl;
 
-		fm.print();
+//		fm.print();
 	}
 	else if (type == "query")
 	{
@@ -51,14 +51,14 @@ int main(int argc, char* argv[])
 		ifstream fin(fm_file);
 		fm_index fm;
 		fm.load(fin);
-		fm.print();
+//		fm.print();
 
 		ifstream qstream(query_file);
 		string query;
 		while (qstream >> query)
 		{
 			auto res = fm.query(query);
-			cout << res.first << " " << res.second << endl;
+			cout << res.first << " " << res.second << "\n";
 		}
 
 	}

@@ -83,6 +83,8 @@ class fm_index
 			e = first[ind]+r; 
 //			cerr << first[ind] << endl;
 //			cerr << s << " " << e << endl;
+			if (s == e)
+				break;
 		}
 		return {s, e};
 	}
