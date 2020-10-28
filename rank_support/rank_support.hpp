@@ -34,6 +34,7 @@ class rank_support
 		init(b);
 	}
 
+
 	void init(bit_vector *b) 
 	{
 		assert(b->size() >= 4);
@@ -238,3 +239,24 @@ class rank_support
 };
 
 
+
+
+
+
+uint64_t hypo_overhead(uint64_t n)
+{
+	uint64_t log, sz1, sz2, R1_bits, R2_bits, R3_bits;
+	log = get_log(n);
+	sz1 = log*log/2;
+	sz2 = log/2;
+	R1_bits = log+1;
+	R2_bits = get_log(sz1)+1;
+	R3_bits = get_log(sz2)+1;
+
+	uint64_t res = 0;
+	res += ((n+sz1-1)/sz1)*(R1_bits-1);
+	res += ((n+sz2-1)/sz2)*(R2_bits-1);
+	res += (1<<sz2)*sz2*(R3_bits-1);
+	return res;
+
+}

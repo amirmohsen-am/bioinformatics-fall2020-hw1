@@ -10,12 +10,32 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 	string type = argv[1];
-
+	
 	if (type == "build")
 	{
 		string input = argv[2];
 		string out_file = argv[3];
 		ofstream fout(out_file);
+		fm_index fm;
+		fm.init(input);
+		fm.save(fout);
+		cout << fm.sigma << endl;
+		cout << fm.size << endl;
+
+		fm.print();
+	}
+	else if (type == "build2")
+	{
+		string in_file = argv[2];
+		string out_file = argv[3];
+		ifstream fin(in_file);
+		ofstream fout(out_file);
+
+		string s;
+		string input = "";
+		while (fin >> s)
+			input += s;
+
 		fm_index fm;
 		fm.init(input);
 		fm.save(fout);
