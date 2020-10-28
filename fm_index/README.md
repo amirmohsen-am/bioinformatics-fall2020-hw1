@@ -10,4 +10,9 @@ running:
 ./bwocc query <saved fmindex file> <query patterns file>
 ```
 
+example for running the genome:
+```
+./bwooc build2 ../data/magneto-genome.in fm.data
+./bwooc query fm.data ../data/query-substr-1000000.in
+```
 
