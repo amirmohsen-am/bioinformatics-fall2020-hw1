@@ -2,10 +2,11 @@
 select_support class is implemented in header `rank_support.hpp`  
 compiling and running:
 ```
-g++ -std=c++11 -DNDEBUG -O3 -I/usr/local/include -L/usr/local/lib \ select_select.cpp -lsdsl -ldivsufsort -ldivsufsort64 && ./a.out
+g++ -std=c++11 -DNDEBUG -O3 -I/usr/local/include -L/usr/local/lib \
+run_rank.cpp -lsdsl -ldivsufsort -ldivsufsort64 && ./a.out
 ```
-`run_select.cpp` takes one string consisting of '0' and '1's as input. And then constructs the tables needed. Then it will test all the possible queries to see if select is working properly.  
-Then in each line it will get a query x and print `select1(x)` (0 based index)
+`run_rank.cpp` takes one string consisting of '0' and '1's as input. And then constructs the tables needed. Then it will test all the possible queries to see if select is working properly.  
+Then in each line it will get a query x and print `rank1(x)` (0 based index)
 
 sample input:
 ```
